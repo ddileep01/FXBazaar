@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 import { Mail, MessageCircle, Star, Tv, CheckCircle, ArrowRight, Clock } from "lucide-react";
 
 export default function ContactPage() {
@@ -26,12 +27,12 @@ export default function ContactPage() {
           <p className="text-zinc-500 text-sm mb-6">
             Thanks for reaching out! We&apos;ll get back to you within <strong className="text-violet-600">24 hours</strong>.
           </p>
-          <a
+          <Link
             href="/"
             className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-violet-600 to-cyan-500 hover:opacity-90 text-white font-semibold text-sm transition-all"
           >
             Back to Home <ArrowRight className="w-4 h-4" />
-          </a>
+          </Link>
         </div>
       </div>
     );

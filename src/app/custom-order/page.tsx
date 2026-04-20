@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 import { CheckCircle, Clock, Layers, MessageCircle, Zap, ArrowRight } from "lucide-react";
 
 const softwareOptions = ["After Effects", "Premiere Pro", "VN Mobile", "CapCut", "DaVinci Resolve", "Other"];
@@ -73,12 +74,12 @@ export default function CustomOrderPage() {
           <p className="text-zinc-500 text-sm mb-6 leading-relaxed">
             Thanks <span className="text-zinc-900 font-medium">{form.name}</span>! We&apos;ve received your custom order request. Our team will review it and contact you within <strong className="text-violet-600">2 hours</strong> via WhatsApp or email.
           </p>
-          <a
+          <Link
             href="/"
             className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-violet-600 to-cyan-500 hover:opacity-90 text-white font-semibold text-sm transition-all"
           >
             Back to Home <ArrowRight className="w-4 h-4" />
-          </a>
+          </Link>
         </div>
       </div>
     );
