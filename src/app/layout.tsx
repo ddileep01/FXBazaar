@@ -15,13 +15,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "FXBazaar — Premium Video Editing Templates",
+  title: "FXBazaar — Premium VN Templates | Scan QR & Edit",
   description:
-    "Professional After Effects, Premiere Pro, and VN mobile editing templates. Custom video editing solutions for creators and brands.",
-  keywords: "after effects templates, premiere pro templates, VN templates, video editing, motion graphics, custom video editing",
+    "Buy premium VN video editing templates for Travel, Wedding, Birthday, Couple, Friendship & more. Pay once, get your QR code, scan in VN app and go viral.",
+  keywords: "VN templates, VN QR code, vn editor templates, instagram reels templates, travel reel template, wedding reel, birthday video template, couple reel",
   openGraph: {
-    title: "FXBazaar — Premium Video Editing Templates",
-    description: "Professional video editing templates for creators and brands.",
+    title: "FXBazaar — Premium VN Templates",
+    description: "Pay once, get QR code, scan in VN app and go viral. 500+ templates for every occasion.",
     type: "website",
   },
 };
