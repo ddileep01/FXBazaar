@@ -27,15 +27,29 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Page-level vertical scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
+  height: 4px;
 }
 ::-webkit-scrollbar-track {
-  background: #f5f3ff;
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
+  background: #c4b5fd;
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
   background: #7c3aed;
-  border-radius: 3px;
+}
+
+/* Utility — hide scrollbar but keep scroll functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
 .gradient-text {
