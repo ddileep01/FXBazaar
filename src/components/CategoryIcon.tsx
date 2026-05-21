@@ -1,35 +1,33 @@
 import {
-  Plane,
   Crown,
   Gift,
-  Users,
   Heart,
-  Music,
+  Gem,
   Star,
-  Zap,
-  Palette,
-  TrendingUp,
+  Sun,
+  Sparkles,
+  Users,
+  Briefcase,
+  Film,
 } from "lucide-react";
-import type { VideoCategory } from "@/lib/data";
-
-const icons: Record<VideoCategory, React.ElementType> = {
-  Travel:     Plane,
-  Wedding:    Crown,
-  Birthday:   Gift,
-  Friendship: Users,
-  Couple:     Heart,
-  Concert:    Music,
-  Festival:   Star,
-  Motivation: Zap,
-  Aesthetic:  Palette,
-  Trending:   TrendingUp,
+const icons: Record<string, React.ElementType> = {
+  Wedding:           Crown,
+  Birthday:          Gift,
+  Anniversary:       Heart,
+  Engagement:        Gem,
+  "Naming Ceremony": Star,
+  "Baby Shower":     Sun,
+  Festival:          Sparkles,
+  Farewell:          Users,
+  Corporate:         Briefcase,
+  Reels:             Film,
 };
 
 export default function CategoryIcon({
   category,
   className,
 }: {
-  category: VideoCategory;
+  category: string;
   className?: string;
 }) {
   const Icon = icons[category];

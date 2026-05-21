@@ -1,409 +1,292 @@
 import Link from "next/link";
-import Image from "next/image";
 import {
-  ArrowRight,
-  Star,
-  QrCode,
-  Smartphone,
-  CheckCircle,
-  TrendingUp,
-  Zap,
-  Shield,
-  Film,
-  Search,
-  Sparkles,
-  Send,
-  Rocket,
+  ArrowRight, Star, CheckCircle, Clock, MessageCircle,
+  Pencil, Video, ThumbsUp, Zap, Shield, ArrowUpRight,
 } from "lucide-react";
 import TemplateCard from "@/components/TemplateCard";
-import CategoryIcon from "@/components/CategoryIcon";
-import { vnTemplates, videoCategories, categoryMeta, stats, testimonials } from "@/lib/data";
-import type { VideoCategory } from "@/lib/data";
+import ScrollReveal from "@/components/ScrollReveal";
+import MarqueeTicker from "@/components/MarqueeTicker";
+import AnimatedCounter from "@/components/AnimatedCounter";
+import TiltCard from "@/components/TiltCard";
+import { videoTemplates, stats, testimonials } from "@/lib/data";
 
-const featuredTemplates = vnTemplates.filter((t) => t.isFeatured).slice(0, 6);
+const featuredTemplates = videoTemplates.filter((t) => t.isFeatured).slice(0, 6);
 
 const howItWorks = [
-  {
-    step: "01",
-    icon: <Search className="w-5 h-5" />,
-    title: "Browse & Choose",
-    desc: "Pick from 500+ VN templates across Travel, Wedding, Birthday, Couple and more categories.",
-    color: "bg-violet-50 text-violet-600 border-violet-100",
-  },
-  {
-    step: "02",
-    icon: <Shield className="w-5 h-5" />,
-    title: "Pay Securely",
-    desc: "Pay a small amount via UPI or WhatsApp. Starting at just ₹49.",
-    color: "bg-cyan-50 text-cyan-600 border-cyan-100",
-  },
-  {
-    step: "03",
-    icon: <QrCode className="w-5 h-5" />,
-    title: "Get Your QR Code",
-    desc: "Receive your unique VN template QR code on WhatsApp within 15 minutes of payment.",
-    color: "bg-emerald-50 text-emerald-600 border-emerald-100",
-  },
-  {
-    step: "04",
-    icon: <Film className="w-5 h-5" />,
-    title: "Scan, Edit & Post",
-    desc: "Open VN app → tap + → QR Code → scan → add your footage → export and go viral!",
-    color: "bg-pink-50 text-pink-600 border-pink-100",
-  },
+  { step: "01", icon: <Video className="w-4 h-4" />,        title: "Browse Templates", desc: "Explore 17 video styles for weddings, birthdays, festivals, and more." },
+  { step: "02", icon: <MessageCircle className="w-4 h-4" />, title: "Place Your Order",  desc: "Click Order Now, fill in your details — names, dates, venue — and send via WhatsApp." },
+  { step: "03", icon: <Pencil className="w-4 h-4" />,        title: "We Edit for You",   desc: "We replace all dummy data with your real details and craft a personalised video." },
+  { step: "04", icon: <ThumbsUp className="w-4 h-4" />,      title: "Receive & Pay",     desc: "Receive the finished video on WhatsApp. Approve it, pay, and share with everyone!" },
 ];
 
 const whyUs = [
-  {
-    icon: <Zap className="w-5 h-5" />,
-    title: "No Editing Skills Needed",
-    desc: "Just add your footage to the pre-built template. The transitions, effects, and color grade are already done.",
-  },
-  {
-    icon: <Smartphone className="w-5 h-5" />,
-    title: "Works on Any Phone",
-    desc: "VN app is free on iOS & Android. Our templates work seamlessly on all devices.",
-  },
-  {
-    icon: <QrCode className="w-5 h-5" />,
-    title: "Instant QR Delivery",
-    desc: "Get your template QR code on WhatsApp within 15 minutes after payment. No waiting.",
-  },
-  {
-    icon: <CheckCircle className="w-5 h-5" />,
-    title: "100% Template Guarantee",
-    desc: "Not satisfied? We'll fix it or replace it. Every template comes with our quality promise.",
-  },
+  { icon: <Clock className="w-5 h-5" />,   title: "Fast Delivery",       desc: "Most orders within 24 hours. Urgent delivery in as little as 6 hours." },
+  { icon: <Pencil className="w-5 h-5" />,  title: "Unlimited Revisions", desc: "We refine until you're completely happy. No extra charge for revisions." },
+  { icon: <Shield className="w-5 h-5" />,  title: "Pay After Approval",  desc: "You only pay once you've seen and approved the final video. Zero risk." },
+  { icon: <Zap className="w-5 h-5" />,     title: "WhatsApp Delivery",   desc: "No app downloads. Everything handled over WhatsApp — simple and fast." },
 ];
 
 export default function HomePage() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative min-h-screen flex items-center pt-16 overflow-hidden hero-glow">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-violet-500/8 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-cyan-500/8 rounded-full blur-3xl" />
-          <div className="absolute top-1/2 right-1/3 w-48 h-48 bg-pink-500/6 rounded-full blur-3xl" />
-        </div>
+      {/* ─── Hero ─── */}
+      <section className="pt-16 min-h-screen flex items-center bg-[#F5F1E8]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-10 items-center">
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left — text */}
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-50 border border-violet-200 text-violet-600 text-xs font-semibold mb-6">
-                <TrendingUp className="w-3.5 h-3.5" />
-                500+ Premium VN Templates Available
+              <div className="hero-badge-anim inline-flex items-center gap-2 neo-badge bg-[#DBEAFE] border-[#2563EB] text-[#2563EB] px-3 py-1.5 mb-8">
+                <Zap className="w-3 h-3" />
+                35+ Videos Delivered Across India
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.08] tracking-tight mb-5 text-zinc-900">
-                Pro VN Templates.{" "}
-                <span className="gradient-text">Just Scan</span>
+              <h1 className="hero-title-anim text-[3.5rem] sm:text-[5rem] lg:text-[6.5rem] font-black leading-[0.88] tracking-tight text-[#111] mb-6">
+                PROFES&shy;SIONAL
                 <br />
-                & <span className="gradient-text">Edit.</span>
+                VIDEOS,{" "}
+                <span style={{ color: "#2563EB" }}>MADE</span>
+                <br />
+                FOR YOU.
               </h1>
 
-              <p className="text-lg text-zinc-500 leading-relaxed mb-8 max-w-lg">
-                Pay once. Get a QR code. Scan it in the VN app, drop in your footage, and publish a viral reel — no editing skills needed.
+              <p className="hero-sub-anim text-base text-zinc-500 mb-8 max-w-md border-l-[3px] border-[#2563EB] pl-4 leading-relaxed">
+                Browse templates → order with your details → receive your personalised video on WhatsApp within 24 hours. Pay only after you approve.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-3 mb-10">
-                <Link
-                  href="/templates"
-                  className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-violet-600 to-cyan-500 hover:opacity-90 text-white font-bold text-sm transition-all hover:shadow-lg hover:shadow-violet-500/25"
-                >
-                  Browse All Templates
-                  <ArrowRight className="w-4 h-4" />
+              <div className="hero-cta-anim flex flex-wrap gap-4 mb-10">
+                <Link href="/templates" className="neo-btn-yellow px-6 py-3.5 gap-2 text-sm">
+                  Browse Templates <ArrowRight className="w-4 h-4" />
                 </Link>
-                <a
-                  href="#how-it-works"
-                  className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-violet-200 hover:border-violet-400 hover:bg-violet-50 text-zinc-700 font-semibold text-sm transition-all"
-                >
-                  <QrCode className="w-4 h-4" />
+                <a href="#how-it-works" className="neo-btn-outline px-6 py-3.5 gap-2 text-sm">
                   How It Works
                 </a>
               </div>
 
-              {/* Social proof */}
-              <div className="flex items-center gap-6">
+              <div className="hero-social-anim flex items-center gap-6 flex-wrap">
                 <div className="flex -space-x-2">
-                  {["PS", "RV", "AS", "KM"].map((a, i) => (
-                    <div
-                      key={i}
-                      className="w-8 h-8 rounded-full bg-gradient-to-br from-violet-500 to-cyan-500 border-2 border-white flex items-center justify-center text-[10px] font-bold text-white"
-                    >
+                  {["PR", "SK", "MI", "AP"].map((a, i) => (
+                    <div key={i} className="w-9 h-9 rounded-full bg-[#111] border-2 border-[#F5F1E8] flex items-center justify-center text-[10px] font-black text-white">
                       {a}
                     </div>
                   ))}
                 </div>
                 <div>
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-0.5">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
+                      <Star key={i} className="w-3.5 h-3.5 text-[#2563EB] fill-[#2563EB]" />
                     ))}
                   </div>
-                  <p className="text-xs text-zinc-500 mt-0.5">80,000+ creators love FXBazaar</p>
+                  <p className="text-xs text-zinc-500 mt-0.5 font-medium">Loved by our early customers</p>
                 </div>
               </div>
             </div>
 
-            {/* Right — VN app mockup / promo card */}
-            <div className="hidden lg:flex justify-center">
-              <div className="relative w-72">
-                {/* Phone mockup */}
-                <div className="relative bg-zinc-900 rounded-[2.5rem] p-3 shadow-2xl border-2 border-zinc-700">
-                  <div className="bg-gradient-to-br from-violet-900 via-fuchsia-900 to-cyan-900 rounded-[2rem] aspect-[9/19] overflow-hidden relative">
-                    {/* VN app UI simulation */}
-                    <div className="absolute inset-0 p-4 flex flex-col">
-                      <div className="flex items-center justify-between mb-4">
-                        <Image src="/vn_logo.jpg" alt="VN" width={32} height={32} className="w-8 h-8 rounded-lg" />
-                        <span className="text-white/80 text-xs font-medium">VN Editor</span>
-                        <QrCode className="w-5 h-5 text-white/60" />
-                      </div>
-                      <div className="flex-1 flex flex-col items-center justify-center gap-3">
-                        <Sparkles className="w-10 h-10 text-violet-400 animate-bounce" />
-                        <div className="text-center">
-                          <div className="text-white font-bold text-sm">Template Loaded!</div>
-                          <div className="text-white/60 text-xs mt-1">Add your footage & post</div>
-                        </div>
-                        <div className="w-full bg-white/10 rounded-xl p-2 mt-2">
-                          <div className="flex gap-1.5 mb-1.5">
-                            {[...Array(5)].map((_, i) => (
-                              <div key={i} className="flex-1 h-8 bg-white/20 rounded-lg" />
-                            ))}
-                          </div>
-                          <div className="h-1.5 bg-violet-400 rounded-full" />
-                        </div>
-                      </div>
-                      <div className="flex gap-2 mt-3">
-                        <div className="flex-1 bg-white/10 rounded-xl py-2 text-white text-xs font-medium text-center">
-                          Export
-                        </div>
-                        <div className="flex-1 bg-gradient-to-r from-violet-500 to-cyan-500 rounded-xl py-2 text-white text-xs font-bold text-center">
-                          Share <Send className="w-3 h-3 inline ml-1" />
-                        </div>
-                      </div>
+            {/* Bento card */}
+            <TiltCard className="relative hidden lg:block p-5 hero-card-anim" maxTilt={8}>
+              <div className="neo-card p-6 relative z-10">
+                <div className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-3">Top Ordered</div>
+                <div className="space-y-2 mb-5">
+                  {["Elegant Wedding Invitation", "Grand Birthday Celebration", "Business Promo Reel", "Diwali Wishes Video"].map((title) => (
+                    <div key={title} className="flex items-center justify-between py-2 border-b border-zinc-100 last:border-0">
+                      <span className="text-sm font-semibold text-[#111]">{title}</span>
+                      <ArrowUpRight className="w-3.5 h-3.5 text-zinc-400 flex-shrink-0" />
                     </div>
-                  </div>
+                  ))}
                 </div>
-
-                {/* Floating badges */}
-                <div className="absolute -left-10 top-16 bg-white rounded-xl px-3 py-2 shadow-lg border border-violet-100 flex items-center gap-2 text-xs">
-                  <QrCode className="w-4 h-4 text-violet-600" />
-                  <span className="font-semibold text-zinc-700">QR Delivered!</span>
-                </div>
-                <div className="absolute -right-8 bottom-24 bg-white rounded-xl px-3 py-2 shadow-lg border border-emerald-100 flex items-center gap-2 text-xs">
-                  <span className="text-emerald-500 font-bold">+500K</span>
-                  <span className="text-zinc-500 flex items-center gap-1">views <TrendingUp className="w-3 h-3 text-red-500" /></span>
+                <Link href="/templates" className="neo-btn-dark px-4 py-2.5 text-xs gap-1.5 justify-center w-full">
+                  See All Templates <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+              <div className="badge-glow-pulse absolute -bottom-4 -right-4 border-2 border-[#111] rounded-lg px-4 py-3 z-20" style={{ background: "#2563EB" }}>
+                <div className="flex items-center gap-2">
+                  <Clock className="w-4 h-4 text-white" />
+                  <span className="text-sm font-black text-white">24hr Delivery</span>
                 </div>
               </div>
-            </div>
+              <div className="absolute -top-4 -left-4 border-2 border-[#111] rounded-lg px-4 py-2 z-20 shadow-[4px_4px_0_#111]" style={{ background: "#2563EB" }}>
+                <span className="text-xs font-black text-white uppercase tracking-wide">Pay After Approval</span>
+              </div>
+            </TiltCard>
           </div>
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="border-y border-violet-100 bg-violet-50/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="text-2xl sm:text-3xl font-extrabold gradient-text">{stat.value}</div>
-                <div className="text-xs sm:text-sm text-zinc-500 mt-1">{stat.label}</div>
-              </div>
+      {/* ─── Marquee ticker ─── */}
+      <MarqueeTicker />
+
+      {/* ─── Stats (dark) ─── */}
+      <section className="bg-[#111] border-y-2 border-[#111]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-x-2 divide-[#333]">
+            {stats.map((stat, i) => (
+              <ScrollReveal key={stat.label} delay={i * 80}>
+                <div className="text-center px-6 py-8">
+                  <div className="text-3xl sm:text-4xl font-black text-[#93C5FD] mb-1">
+                    <AnimatedCounter value={stat.value} />
+                  </div>
+                  <div className="text-xs text-zinc-400 font-semibold uppercase tracking-widest">{stat.label}</div>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* How It Works */}
-      <section id="how-it-works" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-50 border border-violet-200 text-violet-600 text-xs font-semibold mb-4">
-            <Zap className="w-3.5 h-3.5" />
-            Simple 4-Step Process
+      {/* ─── How It Works ─── */}
+      <section id="how-it-works" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <ScrollReveal>
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-14 gap-4">
+            <div>
+              <div className="neo-badge inline-flex items-center gap-1.5 bg-[#DBEAFE] border-[#2563EB] text-[#2563EB] px-3 py-1.5 mb-4">
+                <Zap className="w-3 h-3" /> 4-Step Process
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-black text-[#111] leading-tight">How It Works</h2>
+            </div>
+            <p className="text-sm text-zinc-500 max-w-xs">From browsing to receiving your personalised video in under 24 hours.</p>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold mb-3 text-zinc-900">How It Works</h2>
-          <p className="text-zinc-500 text-sm max-w-md mx-auto">
-            From browsing to publishing your viral reel in under 20 minutes.
-          </p>
-        </div>
+        </ScrollReveal>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {howItWorks.map((step, idx) => (
-            <div key={step.step} className="flex flex-col">
-              {/* Icon only row — connector line runs purely between icon edges */}
-              <div className="relative h-10 mb-4">
-                <div className={`w-10 h-10 rounded-xl flex-shrink-0 flex items-center justify-center border relative z-10 ${step.color}`}>
-                  {step.icon}
-                </div>
-                {idx < howItWorks.length - 1 && (
-                  <div
-                    className="hidden lg:block absolute top-[19px] border-t-2 border-dashed border-violet-200"
-                    style={{ left: "44px", right: "-20px" }}
-                  />
-                )}
-              </div>
-              {/* Card — step number lives here, away from the line */}
-              <div className="p-5 rounded-2xl bg-white card-border shadow-sm flex-1">
-                <span className="text-xs font-bold text-violet-400 mb-3 block">STEP {step.step}</span>
-                <h3 className="font-bold text-sm mb-2 text-zinc-900">{step.title}</h3>
-                <p className="text-xs text-zinc-500 leading-relaxed">{step.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* VN app download note */}
-        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 p-4 rounded-2xl bg-zinc-50 border border-zinc-200 max-w-lg mx-auto">
-          <Image src="/vn_logo.jpg" alt="VN App" width={40} height={40} className="w-10 h-10 rounded-xl" />
-          <div className="text-center sm:text-left">
-            <p className="text-sm font-semibold text-zinc-800">Download VN Video Editor (free)</p>
-            <p className="text-xs text-zinc-500">Available on iOS App Store & Google Play Store</p>
-          </div>
-          <div className="flex gap-2 ml-auto">
-            <a
-              href="https://apps.apple.com/us/app/vn-video-editor/id1343581380"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs bg-black hover:bg-zinc-800 text-white px-3 py-1.5 rounded-lg font-medium transition-colors"
-            >
-              App Store
-            </a>
-            <a
-              href="https://play.google.com/store/apps/details?id=com.frontrow.vlog&pcampaignid=web_share"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded-lg font-medium transition-colors"
-            >
-              Play Store
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Browse by Category */}
-      <section className="border-y border-violet-100 bg-violet-50/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <h2 className="text-xl sm:text-2xl font-extrabold text-zinc-900">Browse by Category</h2>
-              <p className="text-sm text-zinc-500 mt-1">Find the perfect template for your video</p>
-            </div>
-            <Link href="/templates" className="text-sm text-violet-600 hover:text-violet-700 flex items-center gap-1 font-medium">
-              View All <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-            {(videoCategories.filter((c) => c !== "All") as VideoCategory[]).map((cat) => {
-              const meta = categoryMeta[cat];
-              const count = vnTemplates.filter((t) => t.videoCategory === cat).length;
-              return (
-                <Link
-                  key={cat}
-                  href={`/templates?category=${encodeURIComponent(cat)}`}
-                  className={`group flex flex-col items-center gap-2 p-4 rounded-2xl bg-white border transition-all duration-200 hover:shadow-md hover:scale-[1.02] ${meta.bg}`}
-                >
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${meta.bg}`}>
-                    <CategoryIcon category={cat} className={`w-5 h-5 ${meta.color}`} />
+            <ScrollReveal key={step.step} delay={idx * 100}>
+              <TiltCard className="flex flex-col h-full">
+                <div className="relative h-12 mb-4">
+                  <div className="w-12 h-12 rounded-md border-2 border-[#111] bg-[#2563EB] text-white flex items-center justify-center z-10 relative font-black text-base shadow-[3px_3px_0_#111]">
+                    {step.step}
                   </div>
-                  <span className={`text-sm font-bold ${meta.color}`}>{cat}</span>
-                  <span className="text-[11px] text-zinc-400">{count} template{count !== 1 ? "s" : ""}</span>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Templates */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h2 className="text-xl sm:text-2xl font-extrabold text-zinc-900">Featured Templates</h2>
-            <p className="text-sm text-zinc-500 mt-1">Bestsellers loved by 80,000+ creators</p>
-          </div>
-          <Link href="/templates" className="text-sm text-violet-600 hover:text-violet-700 flex items-center gap-1 font-medium">
-            View All <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {featuredTemplates.map((t) => (
-            <TemplateCard key={t.id} template={t} />
+                  {idx < howItWorks.length - 1 && (
+                    <div className="hidden lg:block absolute top-[23px] border-t-2 border-dashed border-[#111]" style={{ left: "52px", right: "-20px" }} />
+                  )}
+                </div>
+                <div className="neo-card p-5 flex-1 cursor-default">
+                  <div className="w-8 h-8 rounded-md border-2 border-[#111] bg-[#DBEAFE] text-[#2563EB] flex items-center justify-center mb-3">
+                    {step.icon}
+                  </div>
+                  <h3 className="font-black text-sm mb-2 text-[#111]">{step.title}</h3>
+                  <p className="text-xs text-zinc-500 leading-relaxed">{step.desc}</p>
+                </div>
+              </TiltCard>
+            </ScrollReveal>
           ))}
         </div>
       </section>
 
-      {/* Why FXBazaar */}
-      <section className="border-y border-violet-100 bg-violet-50/40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl font-extrabold mb-3 text-zinc-900">Why Creators Choose FXBazaar</h2>
-            <p className="text-zinc-500 text-sm max-w-md mx-auto">
-              The easiest way to make professional-looking reels — even if you&apos;ve never edited before.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {whyUs.map((item) => (
-              <div key={item.title} className="p-5 rounded-2xl bg-white card-border shadow-sm">
-                <div className="w-10 h-10 rounded-xl bg-violet-50 text-violet-600 flex items-center justify-center mb-4 border border-violet-100">
-                  {item.icon}
-                </div>
-                <h3 className="font-bold text-sm mb-2 text-zinc-900">{item.title}</h3>
-                <p className="text-xs text-zinc-500 leading-relaxed">{item.desc}</p>
+      {/* ─── Featured Templates ─── */}
+      <section className="border-t-2 border-[#111] bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+          <ScrollReveal>
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+              <div>
+                <div className="neo-badge inline-flex bg-[#DBEAFE] border-[#2563EB] text-[#2563EB] px-3 py-1.5 mb-4">Most Ordered</div>
+                <h2 className="text-3xl sm:text-4xl font-black text-[#111]">Featured Templates</h2>
               </div>
+              <Link href="/templates" className="neo-btn-yellow px-5 py-2.5 gap-2 text-sm self-start sm:self-auto">
+                View All <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </ScrollReveal>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {featuredTemplates.map((t, i) => (
+              <ScrollReveal key={t.id} delay={i * 80}>
+                <TiltCard>
+                  <TemplateCard template={t} />
+                </TiltCard>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="text-center mb-10">
-          <h2 className="text-2xl sm:text-3xl font-extrabold mb-2 text-zinc-900">What Creators Say</h2>
-          <p className="text-sm text-zinc-500">Real reviews from real creators</p>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {testimonials.map((t) => (
-            <div key={t.name} className="p-5 rounded-2xl bg-white card-border shadow-sm flex flex-col gap-4">
-              <div className="flex items-center gap-1">
-                {[...Array(t.rating)].map((_, i) => (
-                  <Star key={i} className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
-                ))}
-              </div>
-              <p className="text-sm text-zinc-500 leading-relaxed flex-1">&ldquo;{t.text}&rdquo;</p>
-              <div className="flex items-center gap-3 pt-3 border-t border-zinc-100">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-violet-500 to-cyan-500 flex items-center justify-center text-[10px] font-bold text-white">
-                  {t.avatar}
-                </div>
-                <div>
-                  <div className="text-xs font-bold text-zinc-900">{t.name}</div>
-                  <div className="text-[10px] text-zinc-400">{t.role}</div>
-                </div>
-              </div>
+      {/* ─── Why Us ─── */}
+      <section className="border-t-2 border-[#111] bg-[#F5F1E8]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+          <ScrollReveal>
+            <div className="text-center mb-14">
+              <h2 className="text-3xl sm:text-4xl font-black text-[#111] mb-3">Why Customers Choose Us</h2>
+              <p className="text-zinc-500 text-sm max-w-md mx-auto">We handle all the editing. You just share your details and enjoy your video.</p>
             </div>
-          ))}
+          </ScrollReveal>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {whyUs.map((item, i) => (
+              <ScrollReveal key={item.title} delay={i * 90}>
+                <TiltCard>
+                  <div className="neo-card p-6 h-full">
+                    <div className="w-10 h-10 rounded-md border-2 border-[#111] bg-[#DBEAFE] text-[#2563EB] flex items-center justify-center mb-4">
+                      {item.icon}
+                    </div>
+                    <h3 className="font-black text-sm mb-2 text-[#111]">{item.title}</h3>
+                    <p className="text-xs text-zinc-500 leading-relaxed">{item.desc}</p>
+                  </div>
+                </TiltCard>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="border-t border-violet-100 bg-gradient-to-b from-violet-50/40 to-white">
-        <div className="max-w-2xl mx-auto px-4 py-20 text-center">
-          <Rocket className="w-12 h-12 text-violet-500 mx-auto mb-4" />
-          <h2 className="text-3xl sm:text-4xl font-extrabold mb-4 text-zinc-900">
-            Ready to Go Viral?
-          </h2>
-          <p className="text-zinc-500 text-sm mb-8 max-w-sm mx-auto">
-            Browse 500+ VN templates across 10 categories. Pay once, get your QR, start editing in minutes.
-          </p>
-          <Link
-            href="/templates"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-gradient-to-r from-violet-600 to-cyan-500 hover:opacity-90 text-white font-bold text-base transition-all hover:shadow-lg hover:shadow-violet-500/25"
-          >
-            Browse All Templates
-            <ArrowRight className="w-5 h-5" />
-          </Link>
+      {/* ─── Testimonials ─── */}
+      <section className="border-t-2 border-[#111] bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+          <ScrollReveal>
+            <div className="text-center mb-14">
+              <h2 className="text-3xl sm:text-4xl font-black text-[#111] mb-2">What Customers Say</h2>
+              <p className="text-sm text-zinc-500 font-medium">Real reviews from real customers across India</p>
+            </div>
+          </ScrollReveal>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {testimonials.map((t, i) => (
+              <ScrollReveal key={t.name} delay={i * 80}>
+                <TiltCard>
+                  <div className="neo-card p-5 flex flex-col gap-4 border-l-[5px] h-full" style={{ borderLeftColor: "#2563EB" }}>
+                    <div className="flex items-center gap-0.5">
+                      {[...Array(t.rating)].map((_, j) => (
+                        <Star key={j} className="w-3.5 h-3.5 text-[#2563EB] fill-[#2563EB]" />
+                      ))}
+                    </div>
+                    <p className="text-sm text-zinc-600 leading-relaxed flex-1">&ldquo;{t.text}&rdquo;</p>
+                    <div className="flex items-center gap-3 pt-3 border-t-2 border-zinc-100">
+                      <div className="w-9 h-9 rounded-md border-2 border-[#111] bg-[#111] flex items-center justify-center text-[10px] font-black text-white flex-shrink-0">
+                        {t.avatar}
+                      </div>
+                      <div>
+                        <div className="text-xs font-black text-[#111]">{t.name}</div>
+                        <div className="text-[10px] text-zinc-400 font-medium">{t.role}</div>
+                      </div>
+                    </div>
+                  </div>
+                </TiltCard>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Final CTA (dark) ─── */}
+      <section className="bg-[#111] border-t-2 border-[#111]">
+        <div className="max-w-3xl mx-auto px-4 py-24 text-center">
+          <ScrollReveal>
+            <div className="neo-badge inline-flex items-center gap-1.5 bg-[#DBEAFE] border-[#2563EB] text-[#2563EB] px-3 py-1.5 mb-6">
+              <Video className="w-3 h-3" /> Start Your Order
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-black mb-5 text-white leading-tight">
+              Ready to Order<br />Your Video?
+            </h2>
+            <p className="text-zinc-400 text-sm mb-10 max-w-sm mx-auto leading-relaxed">
+              Browse 17 templates, pick your style, place an order with your details, and get a personalised video on WhatsApp.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link href="/templates" className="neo-btn-yellow px-8 py-4 gap-2 text-base">
+                Browse Templates <ArrowRight className="w-5 h-5" />
+              </Link>
+              <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-black text-[#111] bg-white border-2 border-white rounded-md shadow-[3px_3px_0_rgba(255,255,255,0.25)] hover:shadow-[1px_1px_0_rgba(255,255,255,0.25)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all">
+                <MessageCircle className="w-5 h-5" /> Contact Us
+              </Link>
+            </div>
+            <div className="flex items-center justify-center gap-2 mt-8 text-xs text-zinc-500">
+              <CheckCircle className="w-3.5 h-3.5 text-[#93C5FD]" />
+              Pay only after you approve the video
+            </div>
+          </ScrollReveal>
         </div>
       </section>
     </>

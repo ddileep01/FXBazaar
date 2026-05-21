@@ -1,98 +1,65 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Mail, MessageCircle, QrCode, Tv } from "lucide-react";
-import { videoCategories, categoryMeta } from "@/lib/data";
-import type { VideoCategory } from "@/lib/data";
-import CategoryIcon from "@/components/CategoryIcon";
-
-const browseCategories = (videoCategories.filter((c) => c !== "All") as VideoCategory[]).slice(0, 6);
+import { Mail, MessageCircle } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-violet-100 bg-violet-50/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Brand */}
+    <footer className="bg-[#111] border-t-2 border-[#111]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           <div className="col-span-1 md:col-span-2">
-            <Link href="/" className="inline-flex mb-4">
-              <Image
-                src="/FXBazaar logo png cropped.png"
-                alt="FXBazaar"
-                width={180}
-                height={44}
-                className="h-11 w-auto object-contain"
-              />
+            <Link href="/" className="inline-flex mb-5">
+              <Image src="/FXBazaar logo png cropped.png" alt="FXBazaar" width={160} height={40} className="h-10 w-auto object-contain brightness-0 invert" />
             </Link>
-            <p className="text-zinc-500 text-sm leading-relaxed max-w-xs mb-2">
-              Premium VN video editing templates for every occasion. Pay once, scan the QR in your VN app, add footage, and go viral.
+            <p className="text-zinc-400 text-sm leading-relaxed max-w-xs mb-5">
+              Professional video editing service for every occasion. Order a template, we personalise it and deliver on WhatsApp.
             </p>
-            <div className="flex items-center gap-1.5 text-xs text-emerald-600 font-medium mb-5">
-              <QrCode className="w-3.5 h-3.5" />
-              Instant QR delivery on WhatsApp
+            <div className="inline-flex items-center gap-1.5 border border-[#2563EB] text-[#93C5FD] text-xs font-bold px-3 py-1.5 rounded-md mb-6">
+              Pay only after you approve the video
             </div>
             <div className="flex items-center gap-3">
-              <a
-                href="#"
-                className="w-9 h-9 rounded-xl bg-white hover:bg-violet-100 hover:text-violet-600 flex items-center justify-center text-zinc-400 transition-colors border border-violet-100"
-                aria-label="Instagram"
-              >
-                <Tv className="w-4 h-4" />
-              </a>
-              <a
-                href="mailto:contact@fxbazaar.com"
-                className="w-9 h-9 rounded-xl bg-white hover:bg-violet-100 hover:text-violet-600 flex items-center justify-center text-zinc-400 transition-colors border border-violet-100"
-                aria-label="Email"
-              >
+              <a href="mailto:dileep18052001@gmail.com"
+                className="w-10 h-10 rounded-md border-2 border-[#333] bg-[#1a1a1a] hover:border-[#2563EB] hover:text-[#93C5FD] flex items-center justify-center text-zinc-400 transition-colors"
+                aria-label="Email">
                 <Mail className="w-4 h-4" />
               </a>
-              <a
-                href="#"
-                className="w-9 h-9 rounded-xl bg-white hover:bg-emerald-100 hover:text-emerald-600 flex items-center justify-center text-zinc-400 transition-colors border border-violet-100"
-                aria-label="WhatsApp"
-              >
+              <a href="https://wa.me/918500656300" target="_blank" rel="noopener noreferrer"
+                className="w-10 h-10 rounded-md border-2 border-[#333] bg-[#1a1a1a] hover:border-[#25D366] hover:text-[#25D366] flex items-center justify-center text-zinc-400 transition-colors"
+                aria-label="WhatsApp">
                 <MessageCircle className="w-4 h-4" />
               </a>
             </div>
           </div>
 
-          {/* Browse by Category */}
           <div>
-            <h4 className="text-sm font-bold text-zinc-900 mb-4">Browse Templates</h4>
-            <ul className="space-y-2">
-              {browseCategories.map((cat) => (
-                <li key={cat}>
-                  <Link
-                    href={`/templates?category=${encodeURIComponent(cat)}`}
-                    className="text-sm text-zinc-500 hover:text-violet-600 transition-colors flex items-center gap-1.5"
-                  >
-                    <CategoryIcon category={cat} className={`w-3.5 h-3.5 ${categoryMeta[cat].color}`} />
-                    {cat}
+            <h4 className="text-sm font-black text-white mb-5 uppercase tracking-wider">Templates</h4>
+            <ul className="space-y-3">
+              {[
+                { label: "All Templates", href: "/templates" },
+                { label: "Wedding Invitations", href: "/templates" },
+                { label: "Birthday Videos", href: "/templates" },
+                { label: "Festival Greetings", href: "/templates" },
+                { label: "Business Promos", href: "/templates" },
+              ].map((link) => (
+                <li key={link.label}>
+                  <Link href={link.href} className="text-sm text-zinc-400 hover:text-[#93C5FD] transition-colors font-medium">
+                    {link.label}
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link href="/templates" className="text-sm text-violet-600 hover:text-violet-700 font-medium transition-colors">
-                  View All →
-                </Link>
-              </li>
             </ul>
           </div>
 
-          {/* Company */}
           <div>
-            <h4 className="text-sm font-bold text-zinc-900 mb-4">Company</h4>
-            <ul className="space-y-2">
+            <h4 className="text-sm font-black text-white mb-5 uppercase tracking-wider">Company</h4>
+            <ul className="space-y-3">
               {[
                 { label: "About Us", href: "/about" },
-                { label: "All Templates", href: "/templates" },
                 { label: "Custom Order", href: "/custom-order" },
                 { label: "Contact", href: "/contact" },
               ].map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-zinc-500 hover:text-violet-600 transition-colors"
-                  >
+                  <Link href={link.href} className="text-sm text-zinc-400 hover:text-[#93C5FD] transition-colors font-medium">
                     {link.label}
                   </Link>
                 </li>
@@ -101,13 +68,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-violet-100 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-zinc-400">
-            © {new Date().getFullYear()} FXBazaar. All rights reserved.
-          </p>
-          <p className="text-xs text-zinc-400">
-            The easiest way to create viral reels with VN app.
-          </p>
+        <div className="mt-14 pt-6 border-t border-[#333] flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-zinc-600">© {new Date().getFullYear()} FXBazaar. All rights reserved.</p>
+          <p className="text-xs text-zinc-600">Professional video editing, delivered to your WhatsApp.</p>
         </div>
       </div>
     </footer>

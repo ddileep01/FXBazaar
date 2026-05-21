@@ -15,13 +15,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "FXBazaar — Premium VN Templates | Scan QR & Edit",
+  title: "FXBazaar — Custom Video Editing | Delivered to WhatsApp",
   description:
-    "Buy premium VN video editing templates for Travel, Wedding, Birthday, Couple, Friendship & more. Pay once, get your QR code, scan in VN app and go viral.",
-  keywords: "VN templates, VN QR code, vn editor templates, instagram reels templates, travel reel template, wedding reel, birthday video template, couple reel",
+    "Professional custom video editing for weddings, birthdays, anniversaries, festivals & more. Browse templates, order with your details, we edit & deliver on WhatsApp. Pay after approval.",
+  keywords: "wedding invitation video, birthday video, anniversary video, custom video editing, WhatsApp video, FXBazaar, personalised video India",
   openGraph: {
-    title: "FXBazaar — Premium VN Templates",
-    description: "Pay once, get QR code, scan in VN app and go viral. 500+ templates for every occasion.",
+    title: "FXBazaar — Custom Video Editing Service",
+    description: "Browse templates, place your order, we edit with your details and deliver on WhatsApp. Pay only after approval.",
     type: "website",
   },
 };
