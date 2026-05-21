@@ -316,7 +316,7 @@ export const stats = [
 
 export const testimonials = [
   {
-    name: "Priya & Rahul",
+    name: "Reeshma Pulaparthi",
     role: "Wedding Invitation — Hyderabad",
     avatar: "PR",
     text: "We ordered the elegant wedding invitation and it was beyond our expectations! Delivered in less than 24 hours. All our guests loved it on WhatsApp.",
