@@ -10,14 +10,33 @@ const subjects = ["Template Support", "Custom Order Inquiry", "Payment Issue", "
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setError(false);
+    try {
+      const res = await fetch("https://formspree.io/f/mzdwrnbo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        setError(true);
+      }
+    } catch {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (submitted) {
@@ -87,8 +106,14 @@ export default function ContactPage() {
                   className="neo-input w-full px-4 py-3 text-sm placeholder-zinc-400 resize-none" />
               </div>
 
-              <button type="submit" className="neo-btn-yellow w-full py-3.5 justify-center gap-2 text-sm">
-                <Send className="w-4 h-4" /> Send Message
+              {error && (
+                <p className="text-xs text-red-600 font-semibold text-center">
+                  Something went wrong. Please try again or contact us on WhatsApp.
+                </p>
+              )}
+              <button type="submit" disabled={loading} className="neo-btn-yellow w-full py-3.5 justify-center gap-2 text-sm disabled:opacity-60 disabled:cursor-not-allowed">
+                <Send className="w-4 h-4" />
+                {loading ? "Sending…" : "Send Message"}
               </button>
             </form>
           </div>
