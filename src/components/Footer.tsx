@@ -28,6 +28,15 @@ export default function Footer() {
                 aria-label="WhatsApp">
                 <MessageCircle className="w-4 h-4" />
               </a>
+              <a href="https://www.instagram.com/fx_bazaar/" target="_blank" rel="noopener noreferrer"
+                className="w-10 h-10 rounded-md border-2 border-[#333] bg-[#1a1a1a] hover:border-[#E1306C] hover:text-[#E1306C] flex items-center justify-center text-zinc-400 transition-colors"
+                aria-label="Instagram">
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none" />
+                </svg>
+              </a>
             </div>
           </div>
 
