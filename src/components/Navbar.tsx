@@ -18,7 +18,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#F5F1E8] border-b-2 border-[#111]">
+    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-black/40 border-b border-white/10">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center">
           <Image
@@ -26,7 +26,7 @@ export default function Navbar() {
             alt="FXBazaar"
             width={160}
             height={40}
-            className="h-10 w-auto object-contain"
+            className="h-10 w-auto object-contain brightness-0 invert"
             priority
           />
         </Link>
@@ -36,10 +36,10 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className={`px-4 py-1.5 rounded-md text-sm font-semibold transition-all ${
+              className={`px-4 py-1.5 rounded-lg text-sm font-semibold transition-all ${
                 pathname === link.href
-                  ? "bg-[#111] text-white"
-                  : "text-[#111] hover:bg-[#111]/8"
+                  ? "bg-indigo-500/20 text-indigo-300 border border-indigo-500/30"
+                  : "text-white/65 hover:text-white hover:bg-white/8"
               }`}
             >
               {link.label}
@@ -54,7 +54,7 @@ export default function Navbar() {
         </div>
 
         <button
-          className="md:hidden p-2 rounded-md border-2 border-[#111] bg-white"
+          className="md:hidden p-2 rounded-lg border border-white/20 bg-white/5 text-white hover:bg-white/10 transition-colors"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
@@ -63,17 +63,17 @@ export default function Navbar() {
       </nav>
 
       {open && (
-        <div className="md:hidden bg-[#F5F1E8] border-b-2 border-[#111]">
+        <div className="md:hidden backdrop-blur-xl bg-black/60 border-b border-white/10">
           <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className={`px-4 py-3 rounded-md text-sm font-semibold transition-all ${
+                className={`px-4 py-3 rounded-lg text-sm font-semibold transition-all ${
                   pathname === link.href
-                    ? "bg-[#111] text-white"
-                    : "text-[#111] hover:bg-[#111]/8"
+                    ? "bg-indigo-500/20 text-indigo-300 border border-indigo-500/30"
+                    : "text-white/65 hover:text-white hover:bg-white/8"
                 }`}
               >
                 {link.label}

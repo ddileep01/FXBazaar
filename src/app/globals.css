@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #F5F1E8;
-  --foreground: #111111;
-  --neo-blue: #2563EB;
-  --neo-border: #111111;
-  --neo-accent: #2563EB;
+  --bg-base: #060611;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --grad-start: #6366f1;
+  --grad-end: #8b5cf6;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--bg-base);
+  --color-foreground: #ffffff;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -18,10 +18,23 @@
 * { box-sizing: border-box; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--bg-base);
+  color: #ffffff;
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(ellipse 80% 55% at 15% 10%, rgba(99, 102, 241, 0.2) 0%, transparent 65%),
+    radial-gradient(ellipse 65% 50% at 85% 78%, rgba(139, 92, 246, 0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 45% at 55% 38%, rgba(244, 114, 182, 0.09) 0%, transparent 55%),
+    #060611;
+  pointer-events: none;
 }
 
 html { scroll-behavior: smooth; }
@@ -29,120 +42,172 @@ html { scroll-behavior: smooth; }
 /* ─── Scrollbar ─── */
 ::-webkit-scrollbar { width: 4px; height: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--neo-border); border-radius: 0; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #6366f1, #8b5cf6);
+  border-radius: 999px;
+}
 
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 
-/* ─── NeoPop card ─── */
-.neo-card {
-  background: #ffffff;
-  border: 2px solid var(--neo-border);
-  box-shadow: 4px 4px 0 var(--neo-border);
-  border-radius: 8px;
-  transition: box-shadow 0.1s ease, transform 0.1s ease;
-}
-.neo-card-hover:hover {
-  box-shadow: 2px 2px 0 var(--neo-border);
-  transform: translate(2px, 2px);
+/* ─── Noise overlay ─── */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
 }
 
-/* ─── NeoPop buttons ─── */
+/* ─── Glass card ─── */
+.neo-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+.neo-card-hover:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(99, 102, 241, 0.35);
+  box-shadow: 0 8px 32px rgba(99, 102, 241, 0.12), 0 0 0 1px rgba(99, 102, 241, 0.12);
+}
+
+/* ─── Gradient button ─── */
 .neo-btn-yellow {
   display: inline-flex;
   align-items: center;
-  background: var(--neo-blue);
-  border: 2px solid var(--neo-border);
-  box-shadow: 3px 3px 0 var(--neo-border);
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   color: #ffffff;
-  font-weight: 800;
-  border-radius: 6px;
+  font-weight: 700;
+  border-radius: 10px;
   cursor: pointer;
-  transition: box-shadow 0.1s ease, transform 0.1s ease;
+  box-shadow: 0 0 24px rgba(99, 102, 241, 0.4), 0 4px 16px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 .neo-btn-yellow:hover {
-  box-shadow: 1px 1px 0 var(--neo-border);
-  transform: translate(2px, 2px);
+  box-shadow: 0 0 36px rgba(99, 102, 241, 0.6), 0 8px 24px rgba(0, 0, 0, 0.35);
+  transform: translateY(-1px);
 }
 .neo-btn-yellow:active {
-  box-shadow: 0 0 0 var(--neo-border);
-  transform: translate(3px, 3px);
+  transform: translateY(0);
+  box-shadow: 0 0 16px rgba(99, 102, 241, 0.3), 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
+/* ─── Dark glass button ─── */
 .neo-btn-dark {
   display: inline-flex;
   align-items: center;
-  background: var(--neo-border);
-  border: 2px solid var(--neo-border);
-  box-shadow: 3px 3px 0 #444;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   color: #ffffff;
-  font-weight: 800;
-  border-radius: 6px;
+  font-weight: 700;
+  border-radius: 10px;
   cursor: pointer;
-  transition: box-shadow 0.1s ease, transform 0.1s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
 .neo-btn-dark:hover {
-  box-shadow: 1px 1px 0 #444;
-  transform: translate(2px, 2px);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.22);
 }
 
+/* ─── Outline glass button ─── */
 .neo-btn-outline {
   display: inline-flex;
   align-items: center;
   background: transparent;
-  border: 2px solid var(--neo-border);
-  box-shadow: 3px 3px 0 var(--neo-border);
-  color: var(--neo-border);
-  font-weight: 800;
-  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 700;
+  border-radius: 10px;
   cursor: pointer;
-  transition: box-shadow 0.1s ease, transform 0.1s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 .neo-btn-outline:hover {
-  box-shadow: 1px 1px 0 var(--neo-border);
-  transform: translate(2px, 2px);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.32);
+  color: #ffffff;
 }
 
-/* ─── NeoPop badge ─── */
+/* ─── White glass button ─── */
+.neo-btn-white {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 10px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background 0.2s ease;
+}
+.neo-btn-white:hover { background: rgba(255, 255, 255, 0.18); }
+
+/* ─── Glass badge ─── */
 .neo-badge {
-  border: 1.5px solid var(--neo-border);
-  border-radius: 4px;
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  border-radius: 8px;
   font-weight: 700;
   font-size: 0.65rem;
   letter-spacing: 0.07em;
   text-transform: uppercase;
+  background: rgba(99, 102, 241, 0.12);
+  color: #a78bfa;
 }
 
-/* ─── NeoPop input ─── */
+/* ─── Glass input ─── */
 .neo-input {
-  background: white;
-  border: 2px solid var(--neo-border);
-  border-radius: 6px;
-  color: var(--neo-border);
-  transition: box-shadow 0.1s;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  color: #ffffff;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 .neo-input:focus {
   outline: none;
-  box-shadow: 3px 3px 0 var(--neo-border);
+  border-color: rgba(99, 102, 241, 0.6);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+.neo-input::placeholder { color: rgba(255, 255, 255, 0.28); }
+
+/* ─── Gradient text ─── */
+.grad-text,
+.gradient-text {
+  background: linear-gradient(135deg, #818cf8, #a78bfa, #f472b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* ─── White outline button — for use on dark backgrounds ─── */
-.neo-btn-white {
-  display: inline-flex;
-  align-items: center;
-  background: transparent;
-  border: 2px solid rgba(255,255,255,0.6);
-  box-shadow: 3px 3px 0 rgba(255,255,255,0.15);
-  color: #ffffff;
-  font-weight: 800;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: box-shadow 0.1s ease, transform 0.1s ease;
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(99,102,241,0.15), transparent 70%);
+  pointer-events: none;
 }
-.neo-btn-white:hover {
-  border-color: rgba(255,255,255,0.9);
-  box-shadow: 1px 1px 0 rgba(255,255,255,0.15);
-  transform: translate(2px, 2px);
+
+.card-border {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+.card-border:hover {
+  border-color: rgba(99, 102, 241, 0.35);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 /* ─── Keyframes ─── */
@@ -167,8 +232,8 @@ html { scroll-behavior: smooth; }
   to   { opacity: 1; transform: translateX(0); }
 }
 @keyframes glowPulse {
-  0%, 100% { box-shadow: 4px 4px 0 #111, 0 0 0 0 rgba(37,99,235,0.45); }
-  50%       { box-shadow: 4px 4px 0 #111, 0 0 0 10px rgba(37,99,235,0); }
+  0%, 100% { box-shadow: 0 0 20px rgba(99,102,241,0.35), 0 0 0 1px rgba(99,102,241,0.2); }
+  50%       { box-shadow: 0 0 40px rgba(139,92,246,0.55), 0 0 0 1px rgba(139,92,246,0.3); }
 }
 
 /* ─── Scroll reveal ─── */
@@ -190,25 +255,3 @@ html { scroll-behavior: smooth; }
 .hero-social-anim { animation: fadeSlideUp 0.6s ease 0.7s both; }
 .hero-card-anim   { animation: cardSlideIn 0.7s cubic-bezier(0.16,1,0.3,1) 0.3s both; }
 .badge-glow-pulse { animation: glowPulse 2.5s ease-in-out infinite; }
-
-/* ─── Legacy overrides (keep existing component refs working) ─── */
-.gradient-text {
-  background: none;
-  -webkit-text-fill-color: initial;
-  color: var(--neo-violet);
-  font-weight: 900;
-}
-
-.hero-glow { background: none; }
-
-.card-border {
-  border: 2px solid var(--neo-border);
-  box-shadow: 4px 4px 0 var(--neo-border);
-  border-radius: 8px;
-  transition: box-shadow 0.1s ease, transform 0.1s ease;
-}
-.card-border:hover {
-  border-color: var(--neo-border);
-  box-shadow: 2px 2px 0 var(--neo-border);
-  transform: translate(2px, 2px);
-}

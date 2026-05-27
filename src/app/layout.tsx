@@ -33,7 +33,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body suppressHydrationWarning className="min-h-screen flex flex-col bg-white text-zinc-900">
+      <body suppressHydrationWarning className="min-h-screen flex flex-col text-white">
+        <div className="noise-overlay" />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
