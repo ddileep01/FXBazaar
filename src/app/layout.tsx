@@ -1,44 +1,34 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const serif = Cormorant_Garamond({
+  variable: "--font-cormorant",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const sans = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "FXBazaar — Custom Video Editing | Delivered to WhatsApp",
+  title: "FXBazaar — Personalised Video Templates",
   description:
-    "Professional custom video editing for weddings, birthdays, anniversaries, festivals & more. Browse templates, order with your details, we edit & deliver on WhatsApp. Pay after approval.",
-  keywords: "wedding invitation video, birthday video, anniversary video, custom video editing, WhatsApp video, FXBazaar, personalised video India",
+    "Wedding invitations, birthday wishes, festival greetings and more. Preview our video templates and order on WhatsApp.",
   openGraph: {
-    title: "FXBazaar — Custom Video Editing Service",
-    description: "Browse templates, place your order, we edit with your details and deliver on WhatsApp. Pay only after approval.",
+    title: "FXBazaar — Personalised Video Templates",
+    description: "Preview our video templates and order on WhatsApp.",
     type: "website",
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body suppressHydrationWarning className="min-h-screen flex flex-col text-white">
-        <div className="noise-overlay" />
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
-      </body>
+    <html lang="en" className={`${serif.variable} ${sans.variable}`}>
+      <body suppressHydrationWarning>{children}</body>
     </html>
   );
 }
